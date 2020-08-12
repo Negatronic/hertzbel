@@ -1,0 +1,26 @@
+{
+  "name": "hertzbel",
+  "version": "1.0.0",
+  "description": "Open source JavaScript library for frequency and deciBel conversion",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Awmages/hertzbel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Awmages/hertzbel/issues"
+  },
+  "homepage": "https://github.com/Awmages/hertzbel#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0"
+  }
+}

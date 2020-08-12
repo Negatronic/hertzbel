@@ -1,0 +1,10 @@
+Functions to do
+    toHz
+    toKiloHz
+    toMegaHz
+    toGigaHz
+    toFreqDouble
+    addFreq
+    subFreq
+    divFreq
+    mulFreq

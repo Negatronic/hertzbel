@@ -1,3 +1,3 @@
-const { toKiloHz } = require("./hertz");
+import { toKiloHz } from "./hertz";
 
-console.log(toKiloHz("100khz"));
+console.log(toKiloHz("3 Mhz"));

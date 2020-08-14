@@ -1,4 +1,4 @@
-Functions to do
+Hertz Functions to do
     toHz
     toKiloHz
     toMegaHz
@@ -8,3 +8,5 @@ Functions to do
     subFreq
     divFreq
     mulFreq
+
+

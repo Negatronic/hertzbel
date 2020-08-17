@@ -1,4 +1,5 @@
 const unitsArr = ["hz", "khz", "mhz", "ghz", "thz"];
+const wArr = ["uw", "mw", "w"];
 
 export function freqParser(freq) {
   const freqStrip = freq.replace(/\s/g, "").toLowerCase();
@@ -6,13 +7,28 @@ export function freqParser(freq) {
   const freqUnit = freqStrip.match(/[a-zA-Z]+/g).toString();
   const unitIndex = unitsArr.indexOf(freqUnit);
   if (freqStrip === null || freqStrip.match(/[a-zA-Z]+/g) === null) {
-    throw new Error("Icomplete string");
+    throw new Error("Incomplete string");
   }
-  if (freqStrip.match(/[a-zA-Z]+/g) === null) {
+  // if (freqStrip.match(/[a-zA-Z]+/g) === null) {
+  //   throw new Error("Incomplete string");
+  // }
+  if (unitIndex > -1) {
+    return [freqVal, unitIndex];
+  } else {
+    throw new Error("String not valid");
+  }
+}
+
+export function decibelParser(power) {
+  const powerStrip = power.replace(/\s/g, "").toLowerCase();
+  const powerVal = parseFloat(powerStrip);
+  const powerUnit = powerStrip.match(/[a-zA-Z]+/g).toString();
+  const unitIndex = wArr.indexOf(powerUnit);
+  if (powerStrip === null || powerStrip.match(/[a-zA-Z]+/g) === null) {
     throw new Error("Incomplete string");
   }
   if (unitIndex > -1) {
-    return [freqVal, unitIndex];
+    return [powerVal, unitIndex];
   } else {
     throw new Error("String not valid");
   }

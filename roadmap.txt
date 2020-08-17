@@ -9,5 +9,7 @@ Hertz Functions to do
     divFreq
     mulFreq
 
-Freq Functions to do 
+Decibel Functions to do 
+    toDbm
+    toDbw
 

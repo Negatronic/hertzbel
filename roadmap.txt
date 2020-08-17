@@ -9,4 +9,5 @@ Hertz Functions to do
     divFreq
     mulFreq
 
+Freq Functions to do 
 

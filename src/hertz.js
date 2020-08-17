@@ -1,4 +1,4 @@
-import { freqParser } from "./parsing";
+import { freqParser, unitIndexer } from "./parsing";
 const unitsArr = ["hz", "khz", "mhz", "ghz", "thz"];
 const unitsCapArr = ["Hz", "kHz", "MHz", "GHz", "THz"];
 
@@ -31,6 +31,18 @@ export function addFreq(pFreq, sFreq) {
   return mathAddFormatCheck(pFreq, sFreq);
 }
 
+export function subFreq(pFreq, sFreq) {
+  return mathSubFormatCheck(pFreq, sFreq);
+}
+
+export function multFreq(freq, multiplier) {
+  return mathMulFormatCheck(freq, multiplier);
+}
+
+export function divFreq(freq, divisor) {
+  return mathDivFormatCheck(freq, divisor);
+}
+
 function mathAddFormatCheck(pFreq, sFreq) {
   if (typeof pFreq === "number" && typeof sFreq === "number") {
     return toHz(pFreq + sFreq);
@@ -51,22 +63,18 @@ function addFreqMath(pFreq, sFreq) {
   const pHz = parseFloat(toHz(pFreq));
   const sHz = parseFloat(toHz(sFreq));
   const addedFreq = pHz + sHz;
-  switch (pHzUnit[2]) {
+  switch (pHzUnit[1]) {
     case 0:
-      return toHz(addedFreq, pHzUnit[2]);
+      return toHz(addedFreq, pHzUnit[1]);
     case 1:
-      return toKiloHz(addedFreq, pHzUnit[2]);
+      return toKiloHz(addedFreq, pHzUnit[1]);
     case 2:
-      return toMegaHz(addedFreq, pHzUnit[2]);
+      return toMegaHz(addedFreq, pHzUnit[1]);
     case 3:
-      return toGigaHz(addedFreq, pHzUnit[2]);
+      return toGigaHz(addedFreq, pHzUnit[1]);
     case 4:
-      return toTeraHz(addedFreq, pHzUnit[2]);
+      return toTeraHz(addedFreq, pHzUnit[1]);
   }
-}
-
-export function subFreq(pFreq, sFreq) {
-  return mathSubFormatCheck(pFreq, sFreq);
 }
 
 function mathSubFormatCheck(pFreq, sFreq) {
@@ -89,22 +97,18 @@ function subFreqMath(pFreq, sFreq) {
   const pHz = parseFloat(toHz(pFreq));
   const sHz = parseFloat(toHz(sFreq));
   const addedFreq = pHz - sHz;
-  switch (pHzUnit[2]) {
+  switch (pHzUnit[1]) {
     case 0:
-      return toHz(addedFreq, pHzUnit[2]);
+      return toHz(addedFreq, pHzUnit[1]);
     case 1:
-      return toKiloHz(addedFreq, pHzUnit[2]);
+      return toKiloHz(addedFreq, pHzUnit[1]);
     case 2:
-      return toMegaHz(addedFreq, pHzUnit[2]);
+      return toMegaHz(addedFreq, pHzUnit[1]);
     case 3:
-      return toGigaHz(addedFreq, pHzUnit[2]);
+      return toGigaHz(addedFreq, pHzUnit[1]);
     case 4:
-      return toTeraHz(addedFreq, pHzUnit[2]);
+      return toTeraHz(addedFreq, pHzUnit[1]);
   }
-}
-
-export function multFreq(freq, multiplier) {
-  return mathMulFormatCheck(freq, multiplier);
 }
 
 function mathMulFormatCheck(freq, multiplier) {
@@ -115,24 +119,47 @@ function mathMulFormatCheck(freq, multiplier) {
   }
 }
 
+function mathDivFormatCheck(freq, divisor) {
+  if (typeof freq === "number") {
+    return toHz(freq / divisor);
+  } else if (typeof freq === "string") {
+    return divFreqMath(freq, divisor);
+  }
+}
+
 function multFreqMath(freq, multipler) {
   const freqUnit = freqParser(freq);
   const freqVal = parseFloat(toHz(freq));
-  console.log(freqUnit);
-  console.log(multipler * freqVal);
   const multFreq = freqVal * multipler;
-  console.log(multFreq);
-  switch (freqUnit[2]) {
+  switch (freqUnit[1]) {
     case 0:
-      return toHz(multFreq, freqUnit[2]);
+      return toHz(multFreq, freqUnit[1]);
     case 1:
-      return toKiloHz(multFreq, freqUnit[2]);
+      return toKiloHz(multFreq, freqUnit[1]);
     case 2:
-      return toMegaHz(multFreq, freqUnit[2]);
+      return toMegaHz(multFreq, freqUnit[1]);
     case 3:
-      return toGigaHz(multFreq, freqUnit[2]);
+      return toGigaHz(multFreq, freqUnit[1]);
     case 4:
-      return toTeraHz(multFreq, freqUnit[2]);
+      return toTeraHz(multFreq, freqUnit[1]);
+  }
+}
+
+function divFreqMath(freq, divisor) {
+  const freqUnit = freqParser(freq);
+  const freqVal = parseFloat(toHz(freq));
+  const divFreq = freqVal / divisor;
+  switch (freqUnit[1]) {
+    case 0:
+      return toHz(divFreq, freqUnit[1]);
+    case 1:
+      return toKiloHz(divFreq, freqUnit[1]);
+    case 2:
+      return toMegaHz(divFreq, freqUnit[1]);
+    case 3:
+      return toGigaHz(divFreq, freqUnit[1]);
+    case 4:
+      return toTeraHz(divFreq, freqUnit[1]);
   }
 }
 
@@ -146,8 +173,9 @@ function formatFreqCheck(freq, units) {
 }
 
 function toStringFreq(freq, units) {
-  const parsed = freqParser(freq, units);
-  const output = parsed[1] * Math.pow(1000, parsed[0]);
+  const parsed = freqParser(freq);
+  const indexDiff = parsed[1] - unitsArr.indexOf(units);
+  const output = parsed[0] * Math.pow(1000, indexDiff);
   return (
     output.toFixed(unitsArr.indexOf(units) * 3).toString() +
     " " +

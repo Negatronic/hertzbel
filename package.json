@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/Awmages/hertzbel.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Alex Mages, alemages@gmail.com",
+  "license": "GPL-3.0 License",
   "bugs": {
     "url": "https://github.com/Awmages/hertzbel/issues"
   },

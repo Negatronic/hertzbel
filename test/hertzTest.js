@@ -1,109 +1,52 @@
 var assert = require("assert");
 import { toKiloHz, addFreq, subFreq, multFreq, divFreq } from "../src/hertz";
 
+const expected = "2000.000 kHz";
+const twoMhz = "2mhz";
+const twoSpaMhz = "2 mhz";
+const twoSpaMhz2 = "2  mhz";
+const twoSpaMhz3 = "2 mhz ";
+const twoCapMhz = "2mhZ";
+const twoCapMhz2 = "2MHz";
+const twoCapMhz3 = "2MHZ";
+
+const twoNum = 2000000;
+
+const twoHz = "2000000 hz";
+const hzExpected = "4 Hz";
+const twoKhz = "2000 khz";
+const twoGhz = ".002 ghz";
+const twoThz = ".000002 thz";
+
+const testHz = "2 Hz";
+const testKhz = "2 kHz";
+const testMhz = "2 MHz";
+const testGhz = "2 GHz";
+const testThz = "2 THz";
 describe("hertzTest", () => {
-  const expected = "2000.000 kHz";
-  const twoMhz = "2mhz";
-  const twoSpaMhz = "2 mhz";
-  const twoSpaMhz2 = "2  mhz";
-  const twoSpaMhz3 = "2 mhz ";
-  const twoCapMhz = "2mhZ";
-  const twoCapMhz2 = "2MHz";
-  const twoCapMhz3 = "2MHZ";
-
-  const twoNum = 2000000;
-
-  const twoHz = "2000000 hz";
-  const hzExpected = "4 Hz";
-  const twoKhz = "2000 khz";
-  const twoGhz = ".002 ghz";
-  const twoThz = ".000002 thz";
-
-  const testHz = "2 Hz";
-  const testKhz = "2 kHz";
-  const testMhz = "2 MHz";
-  const testGhz = "2 GHz";
-  const testThz = "2 THz";
-  //Need to rewrite test more succinclty
-  describe("freq conversion: no space", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoMhz);
-      assert.equal(result, expected);
+  describe("toKilo Test ", () => {
+    var tests = [
+      { args: [twoMhz], expected: "2000.000 kHz" },
+      { args: [twoSpaMhz], expected: "2000.000 kHz" },
+      { args: [twoSpaMhz2], expected: "2000.000 kHz" },
+      { args: [twoSpaMhz3], expected: "2000.000 kHz" },
+      { args: [twoCapMhz], expected: "2000.000 kHz" },
+      { args: [twoCapMhz2], expected: "2000.000 kHz" },
+      { args: [twoCapMhz3], expected: "2000.000 kHz" },
+      { args: [twoNum], expected: "2000.000 kHz" },
+      { args: [twoHz], expected: "2000.000 kHz" },
+      { args: [twoKhz], expected: "2000.000 kHz" },
+      { args: [twoMhz], expected: "2000.000 kHz" },
+      { args: [twoGhz], expected: "2000.000 kHz" },
+      { args: [twoThz], expected: "2000.000 kHz" },
+    ];
+    tests.forEach(function (tests) {
+      it("should be " + tests.expected, () => {
+        const result = toKiloHz(tests.args[0]);
+        assert.equal(result, tests.expected);
+      });
     });
   });
-  describe("freq conversion: 1 space", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoSpaMhz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: 2 space", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoSpaMhz2);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: end space", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoSpaMhz3);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: to correct cap 1", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoCapMhz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: to correct cap 2", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoCapMhz2);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: to correct cap 3", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoCapMhz3);
-      assert.equal(result, expected);
-    });
-  });
-  describe("freq conversion: from number", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoNum);
-      assert.equal(result, expected);
-    });
-  });
-  describe("From Hz to kHz", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoHz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("From kHz to kHz", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoKhz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("From MHz to kHz", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoMhz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("From GHz to kHz", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoGhz);
-      assert.equal(result, expected);
-    });
-  });
-  describe("From THz to kHz", () => {
-    it("should be 2000.000 kHz", () => {
-      const result = toKiloHz(twoThz);
-      assert.equal(result, expected);
-    });
-  });
-
   describe("Hz Add", () => {
     var tests = [
       { args: [twoNum, twoNum], expected: "4000000 Hz" },

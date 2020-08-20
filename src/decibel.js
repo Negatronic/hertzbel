@@ -1,20 +1,17 @@
-import { decibelParser } from "./parsing";
-const wArr = ["uw", "mw", "w"];
+import { wattParser, decibelParser } from "./parsing";
+const wArr = ["uW", "mW", "W"];
 const dbArr = ["dBuW", "dBm", "dBW"];
 
 export function toDbuw(power) {
-  const units = wArr[0];
-  return formatDecibelCheck(power, units);
+  return formatDecibelCheck(power, "dBuW");
 }
 
 export function toDbm(power) {
-  const units = wArr[1];
-  return formatDecibelCheck(power, units);
+  return formatDecibelCheck(power, "dBm");
 }
 
 export function toDbw(power) {
-  const units = wArr[2];
-  return formatDecibelCheck(power, units);
+  return formatDecibelCheck(power, "dBW");
 }
 
 function formatDecibelCheck(power, units) {
@@ -23,19 +20,48 @@ function formatDecibelCheck(power, units) {
     return toNumberDecibel(power, units);
   } else if (powerType === "string") {
     return toStringDecibel(power, units);
+  } else {
+    new Error("invalid type");
   }
 }
 
-// Assume from mW to dBm
 function toNumberDecibel(power, units) {
-  const indexDiff = 1 - wArr.indexOf(units);
+  const indexDiff = 1 - dbArr.indexOf(units);
   const output = 10 * Math.log10(power) + indexDiff * 30;
-  return output.toFixed(0) + " " + dbArr[wArr.indexOf(units)];
+  return output.toFixed(0) + " " + units;
 }
 
 function toStringDecibel(power, units) {
+  const parsed = wattParser(power);
+  const indexDiff = parsed[1] - dbArr.indexOf(units);
+  const output = 10 * Math.log10(parsed[0]) + indexDiff * 30;
+  return output.toFixed(0) + " " + units;
+}
+
+export function toUw(power) {
+  return formatWattCheck(power, "uW");
+}
+
+export function toMw(power) {
+  return formatWattCheck(power, "mW");
+}
+
+export function toW(power) {
+  return formatWattCheck(power, "W");
+}
+
+function formatWattCheck(power, units) {
+  const powerType = typeof power;
+  if (powerType === "string") {
+    return toStringWatt(power, units);
+  } else {
+    throw new Error("invalid type");
+  }
+}
+
+function toStringWatt(power, units) {
   const parsed = decibelParser(power);
   const indexDiff = parsed[1] - wArr.indexOf(units);
-  const output = 10 * Math.log10(parsed[0]) + indexDiff * 30;
-  return output.toFixed(0) + " " + dbArr[wArr.indexOf(units)];
+  const output = Math.pow(10, (parsed[0] + 30 * indexDiff) / 10);
+  return output + " " + units;
 }

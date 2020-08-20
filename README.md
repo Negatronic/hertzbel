@@ -1,18 +1,18 @@
-# hertzbel.js
+# hertzbel
 
 ## Instllation
 
-`npm add hertzbel.js` or `yarn add hertzbel.js`
+`npm add hertzbel` or `yarn add hertzbel`
 
 ## Introduction
 
-`hertzbel.js` is a javascript library created to handle frequency related calculations and conversions, and a wide series of decibel related calculations.
+`hertzbel` is a javascript library created to handle frequency related calculations and conversions, and a wide series of decibel related calculations.
 
 In telecommunications, frequencies, and decibels go hand in hand. In the frequency domain, using decibel logarithmic formulas in place of Volts or Watts allows observers to see very high power levels and minuscule power levels on the same graph. To learn more about the usefulness of decibels visit [wikipedia](<https://en.wikipedia.org/wiki/Decibel#:~:text=The%20decibel%20(symbol%3A%20dB),level%20or%20field%20level%2C%20respectively.>)
 
 The Hertzbel library was designed specifically to be used with spectrum analyzer data, though these calculations will assist in any relatable fields.
 
-##Changelog
+## Changelog
 
 - `1.0.0`: initial launch of Hertzbel.
 
@@ -31,7 +31,7 @@ Translate any frequency from Hz, KHz, MHz, GHz, THz to another.
 ### Example: `toHz({string|number})`
 
 ```js
-import {toHz} from "hertzbel.js";
+import {toHz} from "hertzbel";
 toHz("100 kHz");
 -> "100000 Hz"
 ```
@@ -51,7 +51,7 @@ Summation function of two frequencies. Frequency inputs may be of any combinatio
 ### `addFreq({string|number},{string|number})`
 
 ```js
-import {addFreq} from "hertzbel.js";
+import {addFreq} from "hertzbel";
 addFreq("100kHz", "1 MHz");
 -> "1100.000 kHz"
 ```
@@ -63,7 +63,7 @@ Function that calculates the difference between two frequencies. Inputs may be o
 ### `subFreq({string|number},{string|number})`
 
 ```js
-import {subFreq} from "hertzbel.js";
+import {subFreq} from "hertzbel";
 subFreq("10 MHZ", "500 khz");
 -> "9.500000 MHz"
 ```
@@ -75,7 +75,7 @@ Multiplies a frequency against an integer.
 ### `multFreq({string|number}, {int})`
 
 ```js
-import {multFreq} from "hertzbel.js";
+import {multFreq} from "hertzbel";
 multFreq("1.25ghz", 3);
 -> "3.750000000 GHz"
 ```
@@ -87,7 +87,7 @@ Divides a frequency by an integer.
 ### `divFreq({string|number}, {int})`
 
 ```js
-import {divFreq} from "hertzbel.js";
+import {divFreq} from "hertzbel";
 divFreq("3 GHz", 601);
 -> 0.004991681 GHz
 ```
@@ -107,7 +107,7 @@ Translates units from Watts to decibels. Users may enter a strong or a number as
 ### Example: `todBm({string|number})`
 
 ```js
-import {todBm} from "hertzbel.js";
+import {todBm} from "hertzbel";
 toDbm("4 mW");
 -> "6 dBm"
 ```
@@ -127,7 +127,7 @@ Translates values from decibels to Watts. Only strings may be used.
 ### Example: `toW({string})`
 
 ```js
-import {toW} from "hertzbel.js";
+import {toW} from "hertzbel";
 toW("33 dBm");
 -> "1.9952623149688795 W";
 ```
@@ -137,3 +137,15 @@ toW("33 dBm");
 - `toUw({string})`
 - `toMw({string})`
 - `toW({string})`
+
+## Roadmap
+
+Expected functionality in the future
+
+- Volts to decibel
+- Decibel addtion
+- Decibel subtraction
+- Decibel to Decibel conversion
+- Wavelength to frequency
+- Frequency to wavelength
+- Frequency bucket array

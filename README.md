@@ -1,5 +1,9 @@
 # hertzbel
 
+![npm](https://img.shields.io/npm/v/hertzbel)
+![npm](https://img.shields.io/npm/dw/hertzbel)
+![NPM](https://img.shields.io/npm/l/hertzbel)
+
 ## Installation
 
 `npm add hertzbel` or `yarn add hertzbel`

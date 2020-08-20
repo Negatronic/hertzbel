@@ -1,6 +1,6 @@
 {
   "name": "hertzbel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Open source JavaScript library for frequency and deciBel conversion",
   "main": "src/index.js",
   "scripts": {
@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/Awmages/hertzbel.git"
   },
-  "author": "Alex Mages",
+  "keywords": [
+    "Hertz",
+    "Decibel",
+    "Frequency"
+  ],
+  "author": "Alex Mages <alemages@gmail.com>",
   "license": "GPL-3.0 License",
   "bugs": {
     "url": "https://github.com/Awmages/hertzbel/issues"

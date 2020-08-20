@@ -1,14 +1,14 @@
 # hertzbel
 
-## Instllation
+## Installation
 
 `npm add hertzbel` or `yarn add hertzbel`
 
 ## Introduction
 
-`hertzbel` is a javascript library created to handle frequency related calculations and conversions, and a wide series of decibel related calculations.
+`hertzbel` is a javascript library created to handle frequency related calculations and conversions, and a comprehensive of decibel calculations.
 
-In telecommunications, frequencies, and decibels go hand in hand. In the frequency domain, using decibel logarithmic formulas in place of Volts or Watts allows observers to see very high power levels and minuscule power levels on the same graph. To learn more about the usefulness of decibels visit [wikipedia](<https://en.wikipedia.org/wiki/Decibel#:~:text=The%20decibel%20(symbol%3A%20dB),level%20or%20field%20level%2C%20respectively.>)
+In telecommunications, frequencies and decibels go hand in hand. In the frequency domain, using decibel logarithmic formulas in place of Volts or Watts allows observers to see very high power levels and minuscule power levels on the same graph. To learn more about the usefulness of decibels visit [wikipedia](<https://en.wikipedia.org/wiki/Decibel#:~:text=The%20decibel%20(symbol%3A%20dB),level%20or%20field%20level%2C%20respectively.>)
 
 The Hertzbel library was designed specifically to be used with spectrum analyzer data, though these calculations will assist in any relatable fields.
 
@@ -20,13 +20,13 @@ The Hertzbel library was designed specifically to be used with spectrum analyzer
 
 Hertzbel has several frequency related calculations. Users may enter a string or a number as parameters into the functions.
 
-#### Note: strings must be formatted with convential Hz units (Hz, kHz, MHz, GHz, THz).
+#### Note: strings must be formatted with conventional Hz units (Hz, kHz, MHz, GHz, THz).
 
 #### Note: Numbers will always be considered to be in Hz.
 
 #### Frequency Conversions
 
-Translate any frequency from Hz, KHz, MHz, GHz, THz to another.
+Translate any frequency from Hz, kHz, MHz, GHz, THz to another.
 
 ### Example: `toHz({string|number})`
 
@@ -46,7 +46,7 @@ toHz("100 kHz");
 
 ### Frequency Addition
 
-Summation function of two frequencies. Frequency inputs may be of any combination of units() e.g., Hz + THz). Leading parameter will always determine the resulting units.
+Summation function of two frequencies. Frequency inputs may be of any combination of units() (e.g., Hz + THz). The leading parameter will always determine the resulting units.
 
 ### `addFreq({string|number},{string|number})`
 
@@ -58,7 +58,7 @@ addFreq("100kHz", "1 MHz");
 
 ### Frequency Subtraction
 
-Function that calculates the difference between two frequencies. Inputs may be of any combination. Leading parameter will always determine the resulting units.
+The function that calculates the difference between two frequencies. Inputs may be of any combination. The leading parameter will always determine the resulting units.
 
 ### `subFreq({string|number},{string|number})`
 
@@ -94,11 +94,11 @@ divFreq("3 GHz", 601);
 
 ## Decibel Functions
 
-Hertzbel's decibel functionality was created to relieve the difficult and time consuming decibel calculations.
+Hertzbel's decibel functionality was created to relieve the difficult and time-consuming decibel calculations.
 
 ### From Watts to Decibel Conversion
 
-Translates units from Watts to decibels. Users may enter a strong or a number as parameters into the functions
+Translates units from Watts to decibels. Users may enter a string or a number as parameters into the functions
 
 #### Note: Strings must be formatted with uW, mW, or W.
 
@@ -143,7 +143,7 @@ toW("33 dBm");
 Expected functionality in the future
 
 - Volts to decibel
-- Decibel addtion
+- Decibel addition
 - Decibel subtraction
 - Decibel to Decibel conversion
 - Wavelength to frequency

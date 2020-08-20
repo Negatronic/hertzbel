@@ -13,7 +13,17 @@ export function toDbm(power) {
 export function toDbw(power) {
   return formatDecibelCheck(power, "dBW");
 }
+export function toUw(power) {
+  return formatWattCheck(power, "uW");
+}
 
+export function toMw(power) {
+  return formatWattCheck(power, "mW");
+}
+
+export function toW(power) {
+  return formatWattCheck(power, "W");
+}
 function formatDecibelCheck(power, units) {
   const powerType = typeof power;
   if (powerType === "number") {
@@ -36,18 +46,6 @@ function toStringDecibel(power, units) {
   const indexDiff = parsed[1] - dbArr.indexOf(units);
   const output = 10 * Math.log10(parsed[0]) + indexDiff * 30;
   return output.toFixed(0) + " " + units;
-}
-
-export function toUw(power) {
-  return formatWattCheck(power, "uW");
-}
-
-export function toMw(power) {
-  return formatWattCheck(power, "mW");
-}
-
-export function toW(power) {
-  return formatWattCheck(power, "W");
 }
 
 function formatWattCheck(power, units) {

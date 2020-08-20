@@ -1,8 +1,24 @@
 # hertzbel.js
 
-## Hertz Calculations
+## Instllation
 
-Hertzbel has several frequency related calculations. Users may enter a string or a number as params into the functions.
+`npm add hertzbel.js` or `yarn add hertzbel.js`
+
+## Introduction
+
+`hertzbel.js` is a javascript library created to handle frequency related calculations and conversions, and a wide series of decibel related calculations.
+
+In telecommunications, frequencies, and decibels go hand in hand. In the frequency domain, using decibel logarithmic formulas in place of Volts or Watts allows observers to see very high power levels and minuscule power levels on the same graph. To learn more about the usefulness of decibels visit [wikipedia](<https://en.wikipedia.org/wiki/Decibel#:~:text=The%20decibel%20(symbol%3A%20dB),level%20or%20field%20level%2C%20respectively.>)
+
+The Hertzbel library was designed specifically to be used with spectrum analyzer data, though these calculations will assist in any relatable fields.
+
+##Changelog
+
+- `1.0.0`: initial launch of Hertzbel.
+
+## Hertz Functions
+
+Hertzbel has several frequency related calculations. Users may enter a string or a number as parameters into the functions.
 
 ### Note: strings must be formatted with convential Hz units (Hz, kHz, MHz, GHz, THz).
 
@@ -75,3 +91,49 @@ import {divFreq} from "hertzbel.js";
 divFreq("3 GHz", 601);
 -> 0.004991681 GHz
 ```
+
+## Decibel Functions
+
+Hertzbel's decibel functionality was created to relieve the difficult and time consuming decibel calculations.
+
+### From Watts to Decibel Conversion
+
+Translates units from Watts to decibels. Users may enter a strong or a number as parameters into the functions
+
+### Note: Strings must be formatted with uW, mW, or W.
+
+### Note: Numbers will always be considered to be in mW.
+
+### Example: `todBm({string|number})`
+
+```js
+import {todBm} from "hertzbel.js";
+toDbm("4 mW");
+-> "6 dBm"
+```
+
+### Watt to Decibel Conversion Functions
+
+- `toDbuW({string|number})`
+- `toDbm({string|number})`
+- `toDbw({string|number})`
+
+### From Decibel to Watt Conversion
+
+Translates values from decibels to Watts. Only strings may be used.
+
+### Note: strings must be formatted with dBuw, dBm, or dBW.
+
+### Example: `toW({string})`
+
+```js
+import {toW} from "hertzbel.js";
+toW("33 dBm");
+-> "1.9952623149688795 W";
+```
+
+### Decibel to Watt Conversion Functions
+
+- `toUw({string})`
+- `toMw({string})`
+- `toW({string})`

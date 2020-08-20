@@ -20,11 +20,11 @@ The Hertzbel library was designed specifically to be used with spectrum analyzer
 
 Hertzbel has several frequency related calculations. Users may enter a string or a number as parameters into the functions.
 
-### Note: strings must be formatted with convential Hz units (Hz, kHz, MHz, GHz, THz).
+#### Note: strings must be formatted with convential Hz units (Hz, kHz, MHz, GHz, THz).
 
-### Note: Numbers will always be considered to be in Hz.
+#### Note: Numbers will always be considered to be in Hz.
 
-### Frequency Conversions
+#### Frequency Conversions
 
 Translate any frequency from Hz, KHz, MHz, GHz, THz to another.
 
@@ -100,9 +100,9 @@ Hertzbel's decibel functionality was created to relieve the difficult and time c
 
 Translates units from Watts to decibels. Users may enter a strong or a number as parameters into the functions
 
-### Note: Strings must be formatted with uW, mW, or W.
+#### Note: Strings must be formatted with uW, mW, or W.
 
-### Note: Numbers will always be considered to be in mW.
+#### Note: Numbers will always be considered to be in mW.
 
 ### Example: `todBm({string|number})`
 
@@ -122,7 +122,7 @@ toDbm("4 mW");
 
 Translates values from decibels to Watts. Only strings may be used.
 
-### Note: strings must be formatted with dBuw, dBm, or dBW.
+#### Note: strings must be formatted with dBuw, dBm, or dBW.
 
 ### Example: `toW({string})`
 

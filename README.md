@@ -47,6 +47,7 @@ toHz("100 kHz");
 - `toMegaGz({string|number})`
 - `toGigaHz({string|number})`
 - `toTeraHz({string|number})`
+- `convertFrequency({string|number}, {UnitString})`
 
 ### Frequency Addition
 

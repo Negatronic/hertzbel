@@ -1,5 +1,12 @@
 var assert = require("assert");
-import { toKiloHz, addFreq, subFreq, multFreq, divFreq } from "../src/hertz";
+import {
+  toKiloHz,
+  addFreq,
+  subFreq,
+  multFreq,
+  divFreq,
+  convertFrequency,
+} from "../src/hertz";
 
 const expected = "2000.000 kHz";
 const twoMhz = "2mhz";
@@ -155,9 +162,9 @@ describe("hertzTest", () => {
       { args: [testHz, 2], expected: "1 Hz" },
       { args: [testHz, 100], expected: "0 Hz" },
       { args: [testKhz, 100], expected: "0.020 kHz" },
-      { args: [testKhz, 1000], expected: "0.002 kHz" }, //
-      { args: [testKhz, 10000], expected: "0.000 kHz" }, //
-      { args: [testKhz, 100000], expected: "0.000 kHz" }, //
+      { args: [testKhz, 1000], expected: "0.002 kHz" },
+      { args: [testKhz, 10000], expected: "0.000 kHz" },
+      { args: [testKhz, 100000], expected: "0.000 kHz" },
       { args: [testKhz, 2], expected: "1.000 kHz" },
       { args: [testMhz, 2], expected: "1.000000 MHz" },
       { args: [testGhz, 2], expected: "1.000000000 GHz" },
@@ -166,6 +173,42 @@ describe("hertzTest", () => {
     tests.forEach(function (tests) {
       it("should be " + tests.expected, () => {
         const result = divFreq(tests.args[0], tests.args[1]);
+        assert.equal(result, tests.expected);
+      });
+    });
+  });
+
+  describe("convertFreqeuncy", () => {
+    var tests = [
+      { args: [testHz, "Hz"], expected: "2 Hz" },
+      { args: [testHz, "kHz"], expected: "0.002 kHz" },
+      { args: [testHz, "MHz"], expected: "0.000002 MHz" },
+      { args: [testHz, "GHz"], expected: "0.000000002 GHz" },
+      { args: [testHz, "THz"], expected: "0.000000000002 THz" },
+      { args: [testKhz, "Hz"], expected: "2000 Hz" },
+      { args: [testKhz, "kHz"], expected: "2.000 kHz" },
+      { args: [testKhz, "MHz"], expected: "0.002000 MHz" },
+      { args: [testKhz, "GHz"], expected: "0.000002000 GHz" },
+      { args: [testKhz, "THz"], expected: "0.000000002000 THz" },
+      { args: [testMhz, "Hz"], expected: "2000000 Hz" },
+      { args: [testMhz, "kHz"], expected: "2000.000 kHz" },
+      { args: [testMhz, "MHz"], expected: "2.000000 MHz" },
+      { args: [testMhz, "GHz"], expected: "0.002000000 GHz" },
+      { args: [testMhz, "THz"], expected: "0.000002000000 THz" },
+      { args: [testGhz, "Hz"], expected: "2000000000 Hz" },
+      { args: [testGhz, "kHz"], expected: "2000000.000 kHz" },
+      { args: [testGhz, "MHz"], expected: "2000.000000 MHz" },
+      { args: [testGhz, "GHz"], expected: "2.000000000 GHz" },
+      { args: [testGhz, "THz"], expected: "0.002000000000 THz" },
+      { args: [testThz, "Hz"], expected: "2000000000000 Hz" },
+      { args: [testThz, "kHz"], expected: "2000000000.000 kHz" },
+      { args: [testThz, "MHz"], expected: "2000000.000000 MHz" },
+      { args: [testThz, "GHz"], expected: "2000.000000000 GHz" },
+      { args: [testThz, "THz"], expected: "2.000000000000 THz" },
+    ];
+    tests.forEach(function (tests) {
+      it("should be " + tests.expected, () => {
+        const result = convertFrequency(tests.args[0], tests.args[1]);
         assert.equal(result, tests.expected);
       });
     });

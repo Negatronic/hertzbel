@@ -27,6 +27,22 @@ export function toTeraHz(freq) {
   return formatFreqCheck(freq, units);
 }
 
+export function convertFrequency(freq, toUnits) {
+  let toArr = unitsArr.indexOf(toUnits.toLowerCase());
+  switch (toArr) {
+    case 0:
+      return toHz(freq);
+    case 1:
+      return toKiloHz(freq);
+    case 2:
+      return toMegaHz(freq);
+    case 3:
+      return toGigaHz(freq);
+    case 4:
+      return toTeraHz(freq);
+  }
+}
+
 export function addFreq(pFreq, sFreq) {
   return mathAddFormatCheck(pFreq, sFreq);
 }

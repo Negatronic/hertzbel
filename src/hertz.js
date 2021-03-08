@@ -1,6 +1,6 @@
-import { freqParser, unitIndexer } from "./parsing";
-const unitsArr = ["hz", "khz", "mhz", "ghz", "thz"];
-const unitsCapArr = ["Hz", "kHz", "MHz", "GHz", "THz"];
+import { freqParser, unitIndexer } from './parsing';
+const unitsArr = ['hz', 'khz', 'mhz', 'ghz', 'thz'];
+const unitsCapArr = ['Hz', 'kHz', 'MHz', 'GHz', 'THz'];
 
 export function toHz(freq) {
   const units = unitsArr[0];
@@ -60,17 +60,17 @@ export function divFreq(freq, divisor) {
 }
 
 function mathAddFormatCheck(pFreq, sFreq) {
-  if (typeof pFreq === "number" && typeof sFreq === "number") {
+  if (typeof pFreq === 'number' && typeof sFreq === 'number') {
     return toHz(pFreq + sFreq);
-  } else if (typeof pFreq === "number" && typeof sFreq === "string") {
+  } else if (typeof pFreq === 'number' && typeof sFreq === 'string') {
     const pFreqUnit = toHz(pFreq);
     return addFreqMath(pFreqUnit, sFreq);
-  } else if (typeof pFreq === "string" && typeof sFreq === "number") {
+  } else if (typeof pFreq === 'string' && typeof sFreq === 'number') {
     return addFreqMath(pFreq, toHz(sFreq));
-  } else if (typeof pFreq === "string" && typeof sFreq === "string") {
+  } else if (typeof pFreq === 'string' && typeof sFreq === 'string') {
     return addFreqMath(pFreq, sFreq);
   } else {
-    throw new Error("string not valid");
+    throw new Error('string not valid');
   }
 }
 
@@ -94,17 +94,17 @@ function addFreqMath(pFreq, sFreq) {
 }
 
 function mathSubFormatCheck(pFreq, sFreq) {
-  if (typeof pFreq === "number" && typeof sFreq === "number") {
+  if (typeof pFreq === 'number' && typeof sFreq === 'number') {
     return toHz(pFreq - sFreq);
-  } else if (typeof pFreq === "number" && typeof sFreq === "string") {
+  } else if (typeof pFreq === 'number' && typeof sFreq === 'string') {
     const pFreqUnit = toHz(pFreq);
     return subFreqMath(pFreqUnit, sFreq);
-  } else if (typeof pFreq === "string" && typeof sFreq === "number") {
+  } else if (typeof pFreq === 'string' && typeof sFreq === 'number') {
     return subFreqMath(pFreq, toHz(sFreq));
-  } else if (typeof pFreq === "string" && typeof sFreq === "string") {
+  } else if (typeof pFreq === 'string' && typeof sFreq === 'string') {
     return subFreqMath(pFreq, sFreq);
   } else {
-    throw new Error("string not valid");
+    throw new Error('string not valid');
   }
 }
 
@@ -128,17 +128,17 @@ function subFreqMath(pFreq, sFreq) {
 }
 
 function mathMulFormatCheck(freq, multiplier) {
-  if (typeof freq === "number") {
+  if (typeof freq === 'number') {
     return toHz(freq * multiplier);
-  } else if (typeof freq === "string") {
+  } else if (typeof freq === 'string') {
     return multFreqMath(freq, multiplier);
   }
 }
 
 function mathDivFormatCheck(freq, divisor) {
-  if (typeof freq === "number") {
+  if (typeof freq === 'number') {
     return toHz(freq / divisor);
-  } else if (typeof freq === "string") {
+  } else if (typeof freq === 'string') {
     return divFreqMath(freq, divisor);
   }
 }
@@ -181,9 +181,9 @@ function divFreqMath(freq, divisor) {
 
 function formatFreqCheck(freq, units) {
   const freqType = typeof freq;
-  if (freqType === "number") {
+  if (freqType === 'number') {
     return toNumberFreq(freq, units);
-  } else if (freqType === "string") {
+  } else if (freqType === 'string') {
     return toStringFreq(freq, units);
   }
 }
@@ -192,20 +192,12 @@ function toStringFreq(freq, units) {
   const parsed = freqParser(freq);
   const indexDiff = parsed[1] - unitsArr.indexOf(units);
   const output = parsed[0] * Math.pow(1000, indexDiff);
-  return (
-    output.toFixed(unitsArr.indexOf(units) * 3).toString() +
-    " " +
-    unitsCapArr[unitsArr.indexOf(units)]
-  );
+  return output.toString() + ' ' + unitsCapArr[unitsArr.indexOf(units)];
 }
 
 //Assume the frequency is measured in hertz
 function toNumberFreq(freq, units) {
   const indexVal = unitsArr.indexOf(units);
   const output = freq / Math.pow(1000, indexVal);
-  return (
-    output.toFixed(unitsArr.indexOf(units) * 3).toString() +
-    " " +
-    unitsCapArr[unitsArr.indexOf(units)]
-  );
+  return output.toString() + ' ' + unitsCapArr[unitsArr.indexOf(units)];
 }

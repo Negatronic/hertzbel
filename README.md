@@ -17,7 +17,8 @@ In telecommunications, frequencies and decibels go hand in hand. In the frequenc
 The Hertzbel library was designed specifically to be used with spectrum analyzer data, though these calculations will assist in any relatable fields.
 
 ## Changelog
-
+- `1.0.5`: removed restriction to number of decimals
+- `1.0.3`: added convertFrequency to Hertz
 - `1.0.0`: initial launch of Hertzbel.
 
 ## Hertz Functions

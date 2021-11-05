@@ -2,29 +2,29 @@ import { freqParser, unitIndexer } from './parsing';
 const unitsArr = ['hz', 'khz', 'mhz', 'ghz', 'thz'];
 const unitsCapArr = ['Hz', 'kHz', 'MHz', 'GHz', 'THz'];
 
-export function toHz(freq) {
+export function toHz(freq, toDec) {
   const units = unitsArr[0];
-  return formatFreqCheck(freq, units);
+  return formatFreqCheck(freq, units, toDec);
 }
 
-export function toKiloHz(freq) {
+export function toKiloHz(freq, toDec) {
   const units = unitsArr[1];
-  return formatFreqCheck(freq, units);
+  return formatFreqCheck(freq, units, toDec);
 }
 
-export function toMegaHz(freq) {
+export function toMegaHz(freq, toDec) {
   const units = unitsArr[2];
-  return formatFreqCheck(freq, units);
+  return formatFreqCheck(freq, units, toDec);
 }
 
-export function toGigaHz(freq) {
+export function toGigaHz(freq, toDec) {
   const units = unitsArr[3];
-  return formatFreqCheck(freq, units);
+  return formatFreqCheck(freq, units, toDec);
 }
 
-export function toTeraHz(freq) {
+export function toTeraHz(freq, toDec) {
   const units = unitsArr[4];
-  return formatFreqCheck(freq, units);
+  return formatFreqCheck(freq, units, toDec);
 }
 
 export function convertFrequency(freq, toUnits) {
@@ -55,8 +55,8 @@ export function multFreq(freq, multiplier) {
   return mathMulFormatCheck(freq, multiplier);
 }
 
-export function divFreq(freq, divisor) {
-  return mathDivFormatCheck(freq, divisor);
+export function divFreq(freq, divisor, toDec = 0) {
+  return mathDivFormatCheck(freq, divisor, toDec);
 }
 
 function mathAddFormatCheck(pFreq, sFreq) {
@@ -135,11 +135,11 @@ function mathMulFormatCheck(freq, multiplier) {
   }
 }
 
-function mathDivFormatCheck(freq, divisor) {
+function mathDivFormatCheck(freq, divisor, toDec) {
   if (typeof freq === 'number') {
-    return toHz(freq / divisor);
+    return toHz(freq / divisor, toDec);
   } else if (typeof freq === 'string') {
-    return divFreqMath(freq, divisor);
+    return divFreqMath(freq, divisor, toDec);
   }
 }
 
@@ -161,43 +161,44 @@ function multFreqMath(freq, multipler) {
   }
 }
 
-function divFreqMath(freq, divisor) {
+function divFreqMath(freq, divisor, toDec) {
   const freqUnit = freqParser(freq);
   const freqVal = parseFloat(toHz(freq));
   const divFreq = freqVal / divisor;
   switch (freqUnit[1]) {
     case 0:
-      return toHz(divFreq, freqUnit[1]);
+      return toHz(divFreq, freqUnit[1], toDec);
     case 1:
-      return toKiloHz(divFreq, freqUnit[1]);
+      return toKiloHz(divFreq, freqUnit[1], toDec);
     case 2:
-      return toMegaHz(divFreq, freqUnit[1]);
+      return toMegaHz(divFreq, freqUnit[1], toDec);
     case 3:
-      return toGigaHz(divFreq, freqUnit[1]);
+      return toGigaHz(divFreq, freqUnit[1], toDec);
     case 4:
-      return toTeraHz(divFreq, freqUnit[1]);
+      return toTeraHz(divFreq, freqUnit[1], toDec);
   }
 }
 
-function formatFreqCheck(freq, units) {
+function formatFreqCheck(freq, units, toDec) {
   const freqType = typeof freq;
   if (freqType === 'number') {
-    return toNumberFreq(freq, units);
+    return toNumberFreq(freq, units, toDec);
   } else if (freqType === 'string') {
-    return toStringFreq(freq, units);
+    return toStringFreq(freq, units, toDec);
   }
 }
 
-function toStringFreq(freq, units) {
+function toStringFreq(freq, units, toDec) {
   const parsed = freqParser(freq);
   const indexDiff = parsed[1] - unitsArr.indexOf(units);
   const output = parsed[0] * Math.pow(1000, indexDiff);
+  console.log(toDec);
   return output.toString() + ' ' + unitsCapArr[unitsArr.indexOf(units)];
 }
 
 //Assume the frequency is measured in hertz
-function toNumberFreq(freq, units) {
+function toNumberFreq(freq, units, toDec) {
   const indexVal = unitsArr.indexOf(units);
-  const output = freq / Math.pow(1000, indexVal);
+  const output = (freq / Math.pow(1000, indexVal)).toFixed(toDec);
   return output.toString() + ' ' + unitsCapArr[unitsArr.indexOf(units)];
 }

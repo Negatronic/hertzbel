@@ -27,19 +27,19 @@ export function toTeraHz(freq, toDec = 8) {
   return formatFreqCheck(freq, units, toDec);
 }
 
-export function convertFrequency(freq, toUnits) {
+export function convertFrequency(freq, toUnits, toDec = 8) {
   let toArr = unitsArr.indexOf(toUnits.toLowerCase());
   switch (toArr) {
     case 0:
-      return toHz(freq);
+      return toHz(freq, toDec);
     case 1:
-      return toKiloHz(freq);
+      return toKiloHz(freq, toDec);
     case 2:
-      return toMegaHz(freq);
+      return toMegaHz(freq, toDec);
     case 3:
-      return toGigaHz(freq);
+      return toGigaHz(freq, toDec);
     case 4:
-      return toTeraHz(freq);
+      return toTeraHz(freq, toDec);
   }
 }
 

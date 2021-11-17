@@ -18,7 +18,7 @@ The Hertzbel library was designed specifically to be used with spectrum analyzer
 
 ## Changelog
 
-- `1.0.7`: added toFixed
+- `1.1.0`: added toFixed
 - `1.0.5`: removed restriction to number of decimals
 - `1.0.3`: added convertFrequency to Hertz
 - `1.0.0`: initial launch of Hertzbel.

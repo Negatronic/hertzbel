@@ -35,22 +35,24 @@ Hertzbel has several frequency related calculations. Users may enter a string or
 
 Translate any frequency from Hz, kHz, MHz, GHz, THz to another.
 
-### Example: `toHz({string|number})`
+All frequency functions have an optional toDec which set the number of decimals (default is 8).
+
+### Example: `toHz({string|number}, {toDec})`
 
 ```js
 import {toHz} from "hertzbel";
-toHz("100 kHz");
--> "100000 Hz"
+toHz("100 kHz", 4);
+-> "100000.0000 Hz"
 ```
 
 ### Frequncy Conversion Functions
 
-- `toHz({string|number})`
-- `toKiloHz({string|number})`
-- `toMegaGz({string|number})`
-- `toGigaHz({string|number})`
-- `toTeraHz({string|number})`
-- `convertFrequency({string|number}, {UnitString})`
+- `toHz({string|number}, {toDec})`
+- `toKiloHz({string|number}, {toDec})`
+- `toMegaGz({string|number}, {toDec})`
+- `toGigaHz({string|number}, {toDec})`
+- `toTeraHz({string|number}, {toDec})`
+- `convertFrequency({string|number}, {UnitString}, {toDec})`
 
 ### Frequency Addition
 
@@ -61,30 +63,30 @@ Summation function of two frequencies. Frequency inputs may be of any combinatio
 ```js
 import {addFreq} from "hertzbel";
 addFreq("100kHz", "1 MHz");
--> "1100.000 kHz"
+-> "1100.00000000 kHz"
 ```
 
 ### Frequency Subtraction
 
 The function that calculates the difference between two frequencies. Inputs may be of any combination. The leading parameter will always determine the resulting units.
 
-### `subFreq({string|number},{string|number})`
+### `subFreq({string|number},{string|number}, {toDec})`
 
 ```js
 import {subFreq} from "hertzbel";
-subFreq("10 MHZ", "500 khz");
--> "9.500000 MHz"
+subFreq("10 MHZ", "500 khz", 3);
+-> "9.500 MHz"
 ```
 
 ### Frequency Multiplcation
 
 Multiplies a frequency against an integer.
 
-### `multFreq({string|number}, {int})`
+### `multFreq({string|number}, {int}, {toDec})`
 
 ```js
 import {multFreq} from "hertzbel";
-multFreq("1.25ghz", 3);
+multFreq("1.25ghz", 3, 9);
 -> "3.750000000 GHz"
 ```
 
@@ -92,11 +94,11 @@ multFreq("1.25ghz", 3);
 
 Divides a frequency by an integer.
 
-### `divFreq({string|number}, {int})`
+### `divFreq({string|number}, {int}, {toDec})`
 
 ```js
 import {divFreq} from "hertzbel";
-divFreq("3 GHz", 601);
+divFreq("3 GHz", 601, 9);
 -> 0.004991681 GHz
 ```
 

@@ -9,10 +9,6 @@ export {
   subFreq,
   multFreq,
   divFreq,
-} from "./hertz";
+} from './hertz';
 
-export { toDbm, toDbw, toDbuw, toMw, toUw, toW } from "./decibel";
-
-import { convertFrequency } from "./hertz";
-
-console.log(convertFrequency("1 hz", "hz"));
+export { toDbm, toDbw, toDbuw, toMw, toUw, toW } from './decibel';

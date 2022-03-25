@@ -1,8 +1,8 @@
 {
   "name": "hertzbel",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Open source JavaScript library for frequency and deciBel conversion",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "start": "babel-node src/index.js",
     "test": "mocha --require @babel/register"
@@ -30,6 +30,5 @@
     "@babel/register": "^7.10.5",
     "chai": "^4.2.0",
     "mocha": "^8.1.1"
-  },
-  "dependencies": {}
+  }
 }
